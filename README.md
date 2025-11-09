@@ -100,12 +100,23 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 - ⚠️ Make sure your backend API uses HTTPS in production
 - ⚠️ After adding/changing environment variables, you need to trigger a new deployment
 
-### Troubleshooting:
-- If you see "Cannot connect to server" errors, verify that:
-  1. `NEXT_PUBLIC_API_URL` is set correctly in Netlify
-  2. Your backend API is running and accessible
-  3. CORS is properly configured on your backend
-  4. The API URL uses HTTPS (not HTTP) in production
+### Troubleshooting Build Errors:
+
+**If you see "Module not found" errors:**
+1. Make sure all files are committed to git (especially `src/components/` and `src/lib/` directories)
+2. Verify that path aliases are working - the project uses `@/` for imports
+3. Check that `next.config.js` has webpack alias configuration (already included)
+4. Ensure `tsconfig.json` has `baseUrl` and `paths` configured (already included)
+
+**If you see "Cannot connect to server" errors:**
+1. `NEXT_PUBLIC_API_URL` is set correctly in Netlify
+2. Your backend API is running and accessible
+3. CORS is properly configured on your backend
+4. The API URL uses HTTPS (not HTTP) in production
+
+**If build fails with Node version issues:**
+- The project is configured for Node 18-22 (see `.nvmrc` and `package.json`)
+- Netlify should automatically use the correct version, but you can pin it in Netlify settings if needed
 
 ---
 
